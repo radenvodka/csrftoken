@@ -9,11 +9,14 @@ require_once("class.csrftoken.php");
 $CSRFToken = new CSRFToken;
 session_start();
 if(isset($_POST['username']) && isset($_POST['token']) && isset($_POST['password']) && isset($_POST['Submit'])){
+	
 	if($CSRFToken->validateToken($_POST['token'])){ // for validate token
 		echo "<b>Session Validate Success</b>";
 	}else{
 		echo "<b>Session Validate Failed</b>";
 	}
+	
+	$CSRFToken->generate_token(); // Regenerate token
 }
 ?>
 <!DOCTYPE html>
